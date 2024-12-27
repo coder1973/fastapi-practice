@@ -9,6 +9,7 @@ from db.database import engine
 from fastapi import Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
 app.include_router(authentication.router)
@@ -49,3 +50,4 @@ models.Base.metadata.create_all(engine)
 #     allow_headers = ['*']
 # )
 
+app.mount('/files', StaticFiles(directory="files"), name='files')
