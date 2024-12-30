@@ -10,7 +10,8 @@ def test_get_all_blogs():
 
 def test_auth_error():
     response = client.post("/token",
-      data={"username": "", "password": ""}
+      data={"username": "", "password": ""}, 
+      headers={ 'Content-Type': 'application/x-www-form-urlencoded'}
     )
     access_token = response.json().get("access_token")
     assert access_token ==  None
@@ -19,9 +20,12 @@ def test_auth_error():
 
 def test_auth_success():
     response = client.post("/token",
-      data={"username": "cat", "password": "cat"}
+      data={"username": "cat", "password": "cat"},
+      headers={ 'Content-Type': 'application/x-www-form-urlencoded'}
     )
+    print(response)
     access_token = response.json().get("access_token")
+    print(access_token)
     assert access_token
 
 def test_post_article():
