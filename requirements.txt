@@ -5,7 +5,9 @@ passlib
 bcrypt
 python-multipart
 python-jose
-aiofile
+aiofiles
 requests
 pytest
 httpx
+jinja2
+websockets
