@@ -13,10 +13,8 @@ def test_auth_error():
       data={"username": "", "password": ""}, 
       headers={ 'Content-Type': 'application/x-www-form-urlencoded'}
     )
-    access_token = response.json().get("access_token")
-    assert access_token ==  None
-    message = response.json().get("detail")[0].get("msg")
-    assert message == "field required"
+    assert response.status_code == 400
+    assert response.text == '404: Invalid credentials'
 
 def test_auth_success():
     response = client.post("/token",
